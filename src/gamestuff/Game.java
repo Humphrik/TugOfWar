@@ -1,0 +1,112 @@
+package gamestuff;
+
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+
+public class Game {
+	static JFrame frame = new JFrame("2 Player Game");
+	static JPanel panel = new JPanel(new GridBagLayout());
+	static GridBagConstraints c = new GridBagConstraints();
+	static JProgressBar bar = new JProgressBar(JProgressBar.HORIZONTAL,0,100);
+	static JLabel leftPrompt = new JLabel(" A");
+	static JLabel rightPrompt = new JLabel("K");
+	static JLabel label = new JLabel("<--------------------------------------->");
+	static Font font = new Font("Playbill", Font.ITALIC, 60);
+	static int n = 50;
+	static char leftKey = 'a';
+	static char rightKey = 'k';
+
+	
+	public static void main(String[] args){
+		c.gridx = 0;
+		c.gridy = 0;
+		c.ipadx = 25;
+		leftPrompt.setFont(font);
+		panel.add(leftPrompt, c);
+		c.gridx = 2;
+		rightPrompt.setFont(font);
+		panel.add(rightPrompt, c);
+		c.gridx = 1;
+		c.gridy = 0;
+		label.setFont(font);
+		panel.add(label,c);
+		c.gridx = 0;
+		c.gridy = 1;
+		c.ipadx = 300;
+		c.ipady = 25;
+		c.gridwidth = 3;
+		panel.add(bar,c);
+		bar.setValue(50);
+		frame.add(panel);
+		frame.setVisible(true);
+		frame.setSize(750,500);
+		panel.setFocusable(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		addListener();
+	}
+	public static void addListener(){
+		panel.addKeyListener(new KeyListener(){
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+			}
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				if(arg0.getKeyChar() == leftKey){
+					n-=5;
+					if(arg0.getKeyChar() == 'a'){
+						leftKey = 's';
+						leftPrompt.setText(" S");
+					} else {
+						leftKey = 'a';
+						leftPrompt.setText(" A");
+					}
+				}
+				bar.setValue(n);
+				checkWin();
+			}
+			@Override
+			public void keyTyped(KeyEvent arg0) {			
+			}});
+		panel.addKeyListener(new KeyListener(){
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+			}
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				if(arg0.getKeyChar() == rightKey){
+					n+=5;
+					if(arg0.getKeyChar() == 'k'){
+						rightKey = 'l';
+						rightPrompt.setText("L");
+					} else {
+						rightKey = 'k';
+						rightPrompt.setText("K");
+					}
+				}
+				bar.setValue(n);
+				checkWin();
+			}
+			@Override
+			public void keyTyped(KeyEvent arg0) {			
+			}});
+	}
+	public static void checkWin(){
+		if(n >= 100){
+			leftPrompt.setText(" LOSE");
+			rightPrompt.setText("WIN");
+			n += 200;
+		} else if(n<=0){
+			rightPrompt.setText("LOSE");
+			leftPrompt.setText(" WIN");
+			n = -100;
+		}
+	}
+}
