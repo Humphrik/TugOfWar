@@ -36,13 +36,19 @@ public class Game {
 		c.ipadx = 25;
 		leftPrompt.setFont(font);
 		panel.add(leftPrompt, c);
+		
+		
 		c.gridx = 2;
 		rightPrompt.setFont(font);
 		panel.add(rightPrompt, c);
+		
+		
 		c.gridx = 1;
 		c.gridy = 0;
 		label.setFont(font);
 		panel.add(label, c);
+		
+		
 		c.gridx = 0;
 		c.gridy = 1;
 		c.ipadx = 400;
@@ -52,6 +58,8 @@ public class Game {
 		bar.setValue(50);
 		bar.setForeground(Color.BLUE);
 		bar.setBackground(Color.RED);
+		
+		
 		frame.add(panel);
 		frame.setVisible(true);
 		frame.setSize(750, 300);
@@ -59,14 +67,17 @@ public class Game {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
+		
+		
 		leftPrompt.setPreferredSize(new Dimension(100,100));
 		rightPrompt.setPreferredSize(new Dimension(100,100));
 		label.setPreferredSize(new Dimension(450,100));
 		leftPrompt.setHorizontalAlignment(SwingConstants.CENTER);
 		rightPrompt.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		
 		countdown.start();
-		// Game.addListener();
 	}
 
 	public static void addListener() {
@@ -78,10 +89,12 @@ public class Game {
 		if (n >= 100) {
 			leftPrompt.setText("LOSE");
 			rightPrompt.setText("WIN" );
+			label.setText("<- - - - - -OVER- - - - - ->");
 			n += 200;
 		} else if (n <= 0) {
 			rightPrompt.setText("LOSE");
 			leftPrompt.setText("WIN");
+			label.setText("<- - - - - -OVER- - - - - ->");
 			n = -100;
 		}
 	}
