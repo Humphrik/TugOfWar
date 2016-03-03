@@ -1,6 +1,7 @@
 package gamestuff;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -9,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.SwingConstants;
 
 public class Game {
 	static Countdown countdown = new Countdown();
@@ -16,9 +18,9 @@ public class Game {
 	static JPanel panel = new JPanel(new GridBagLayout());
 	static GridBagConstraints c = new GridBagConstraints();
 	static JProgressBar bar = new JProgressBar(JProgressBar.HORIZONTAL, 0, 100);
-	static JLabel leftPrompt = new JLabel(" W");
+	static JLabel leftPrompt = new JLabel("W");
 	static JLabel rightPrompt = new JLabel("UP");
-	static JLabel label = new JLabel("<--------------------3-------------------->");
+	static JLabel label = new JLabel("<- - - - - -3- - - - - ->");
 	static Font font = new Font("Playbill", Font.ITALIC, 60);
 	static int n = 50;
 	static int[] leftKeyList = { 65, 87, 68, 83 };
@@ -43,7 +45,7 @@ public class Game {
 		panel.add(label, c);
 		c.gridx = 0;
 		c.gridy = 1;
-		c.ipadx = 300;
+		c.ipadx = 400;
 		c.ipady = 25;
 		c.gridwidth = 3;
 		panel.add(bar, c);
@@ -52,9 +54,17 @@ public class Game {
 		bar.setBackground(Color.RED);
 		frame.add(panel);
 		frame.setVisible(true);
-		frame.setSize(750, 500);
+		frame.setSize(750, 300);
 		panel.setFocusable(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+		frame.setLocationRelativeTo(null);
+		leftPrompt.setPreferredSize(new Dimension(100,100));
+		rightPrompt.setPreferredSize(new Dimension(100,100));
+		label.setPreferredSize(new Dimension(450,100));
+		leftPrompt.setHorizontalAlignment(SwingConstants.CENTER);
+		rightPrompt.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
 		countdown.start();
 		// Game.addListener();
 	}
@@ -66,12 +76,12 @@ public class Game {
 
 	public static void checkWin() {
 		if (n >= 100) {
-			leftPrompt.setText(" LOSE");
-			rightPrompt.setText("WIN");
+			leftPrompt.setText("LOSE");
+			rightPrompt.setText("WIN" );
 			n += 200;
 		} else if (n <= 0) {
 			rightPrompt.setText("LOSE");
-			leftPrompt.setText(" WIN");
+			leftPrompt.setText("WIN");
 			n = -100;
 		}
 	}
