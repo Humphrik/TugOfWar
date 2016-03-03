@@ -7,14 +7,17 @@ public class RightListener implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+		if(!Game.started){
+			Game.leftFalseStarted = false;
+			Game.countdown.interrupt();
+		}
 
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// System.out.println("Key Released.");
-		if (findValue(Game.rightKeyList, arg0.getKeyCode())) {
+		if (findValue(Game.rightKeyList, arg0.getKeyCode()) && Game.started) {
 			// System.out.println("Is argument correct?");
 			if (arg0.getKeyCode() == Game.rightKey) {
 				Game.n += 5;

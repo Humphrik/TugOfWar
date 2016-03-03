@@ -13,21 +13,24 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
 public class Game {
+	static Countdown countdown = new Countdown();
 	static JFrame frame = new JFrame("2 Player Game");
 	static JPanel panel = new JPanel(new GridBagLayout());
 	static GridBagConstraints c = new GridBagConstraints();
 	static JProgressBar bar = new JProgressBar(JProgressBar.HORIZONTAL, 0, 100);
 	static JLabel leftPrompt = new JLabel(" W");
 	static JLabel rightPrompt = new JLabel("UP");
-	static JLabel label = new JLabel("<--------------------------------------->");
+	static JLabel label = new JLabel("<--------------------3-------------------->");
 	static Font font = new Font("Playbill", Font.ITALIC, 60);
 	static int n = 50;
 	static int[] leftKeyList = { 65, 87, 68, 83 };
 	static int[] rightKeyList = { 37, 38, 39, 40 };
 	static int leftKey = 87;
 	static int rightKey = 38;
+	static boolean started = false;
+	static boolean leftFalseStarted;
 
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		c.gridx = 0;
 		c.gridy = 0;
 		c.ipadx = 25;
@@ -52,7 +55,8 @@ public class Game {
 		frame.setSize(750, 500);
 		panel.setFocusable(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		addListener();
+		countdown.start();
+		//Game.addListener();
 	}
 
 	public static void addListener() {

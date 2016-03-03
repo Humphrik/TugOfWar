@@ -4,17 +4,19 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class LeftListener implements KeyListener {
-
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+		if(!Game.started){
+			Game.leftFalseStarted = true;
+			Game.countdown.interrupt();
+		}
 
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// System.out.println("Key Released.");
-		if (findValue(Game.leftKeyList, arg0.getKeyCode())) {
+		if (findValue(Game.leftKeyList, arg0.getKeyCode()) && Game.started) {
 			// System.out.println("Is argument correct?");
 			if (arg0.getKeyCode() == Game.leftKey) {
 				// System.out.println("Yes.");
