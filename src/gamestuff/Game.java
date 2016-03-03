@@ -1,11 +1,9 @@
 package gamestuff;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.Arrays;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -30,7 +28,7 @@ public class Game {
 	static boolean started = false;
 	static boolean leftFalseStarted;
 
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		c.gridx = 0;
 		c.gridy = 0;
 		c.ipadx = 25;
@@ -50,13 +48,15 @@ public class Game {
 		c.gridwidth = 3;
 		panel.add(bar, c);
 		bar.setValue(50);
+		bar.setForeground(Color.BLUE);
+		bar.setBackground(Color.RED);
 		frame.add(panel);
 		frame.setVisible(true);
 		frame.setSize(750, 500);
 		panel.setFocusable(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		countdown.start();
-		//Game.addListener();
+		// Game.addListener();
 	}
 
 	public static void addListener() {
