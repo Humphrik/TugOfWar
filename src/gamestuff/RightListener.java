@@ -7,7 +7,7 @@ public class RightListener implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		if(!Game.started){
+		if(findValue(Game.rightKeyList, arg0.getKeyCode()) &&  !Game.started){
 			Game.leftFalseStarted = false;
 			Game.countdown.interrupt();
 		}

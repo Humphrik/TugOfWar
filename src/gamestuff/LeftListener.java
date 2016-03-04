@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 public class LeftListener implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		if(!Game.started){
+		if(findValue(Game.leftKeyList, arg0.getKeyCode()) && !Game.started){
 			Game.leftFalseStarted = true;
 			Game.countdown.interrupt();
 		}
