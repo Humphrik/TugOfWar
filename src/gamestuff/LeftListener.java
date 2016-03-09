@@ -17,7 +17,7 @@ public class LeftListener implements KeyListener {
 	public void keyReleased(KeyEvent arg0) {
 		if (findValue(Game.leftKeyList, arg0.getKeyCode()) && Game.started) { //When a WASD key is pressed.
 			if (arg0.getKeyCode() == Game.leftKey) { //If the pressed key is correct.
-				Game.n -= 5;
+				Game.n += 5;
 				int temp = Game.leftKey;
 				while (temp == Game.leftKey) { //Picks a new key for pressing.
 					int x = (int) (Math.random() * 4);
@@ -39,7 +39,7 @@ public class LeftListener implements KeyListener {
 				Game.bar.setValue(Game.n); //Values adjusted.
 				Game.checkWin(); //Checks for a win.
 			} else {
-				Game.n += 5;
+				Game.n -= 5;
 				Game.bar.setValue(Game.n); //Bar goes in inverse direction.
 				Game.checkWin(); //Tests for a win.
 			}

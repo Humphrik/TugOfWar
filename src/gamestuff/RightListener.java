@@ -20,7 +20,7 @@ public class RightListener implements KeyListener { //See LeftListener.java
 		if (findValue(Game.rightKeyList, arg0.getKeyCode()) && Game.started) {
 			// System.out.println("Is argument correct?");
 			if (arg0.getKeyCode() == Game.rightKey) {
-				Game.n += 5;
+				Game.n -= 5;
 				int temp = Game.rightKey;
 				while (temp == Game.rightKey) {
 					int x = (int) (Math.random() * 4);
@@ -43,7 +43,7 @@ public class RightListener implements KeyListener { //See LeftListener.java
 				Game.checkWin();
 			} else {
 				// System.out.println("No");
-				Game.n -= 5;
+				Game.n += 5;
 				Game.bar.setValue(Game.n);
 				Game.checkWin();
 			}

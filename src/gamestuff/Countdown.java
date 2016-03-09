@@ -9,11 +9,11 @@ public class Countdown extends Thread{ //Countdown at the start of the game.
 			Thread.sleep(1000);
 			Game.label.setText("<- - - - - -1- - - - - ->");
 			Thread.sleep(1000);
-			Game.label.setText("<- - - - - TUG! - - - - ->");
+			Game.label.setText("<- - - - - GO! - - - - ->");
 			Game.started = true; //Game begins
 			
 			
-			int timer = 60;
+			int timer = 5;
 			while (timer >= 0 && !Game.gameOver){
 				Thread.sleep(1000);
 				timer--;

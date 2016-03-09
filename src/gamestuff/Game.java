@@ -88,18 +88,18 @@ public class Game {
 	}
 
 	public static void checkWin() { //Tests for a winning player.
-		if (n >= 100) { //The right player wins.
+		if (n <= 0) { //The right player wins.
 			leftPrompt.setText("LOSE");
 			rightPrompt.setText("WIN" );
 			label.setText("<- - - - - -OVER- - - - - ->");
 			gameOver = true;
-			n = 200;
-		} else if (n <= 0) { //The left player wins.
+			n = -100;
+		} else if (n >= 100) { //The left player wins.
 			rightPrompt.setText("LOSE");
 			leftPrompt.setText("WIN");
 			label.setText("<- - - - - -OVER- - - - - ->");
 			gameOver = true;
-			n = -100;
+			n = 200;
 		}
 	}
 
