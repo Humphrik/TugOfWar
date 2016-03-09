@@ -29,6 +29,7 @@ public class Game {
 	static int rightKey = 38;
 	static boolean started = false;
 	static boolean leftFalseStarted;
+	static boolean gameOver = false;
 
 	public static void main(String[] args) {
 		c.gridx = 0;
@@ -91,11 +92,13 @@ public class Game {
 			leftPrompt.setText("LOSE");
 			rightPrompt.setText("WIN" );
 			label.setText("<- - - - - -OVER- - - - - ->");
+			gameOver = true;
 			n = 200;
 		} else if (n <= 0) { //The left player wins.
 			rightPrompt.setText("LOSE");
 			leftPrompt.setText("WIN");
 			label.setText("<- - - - - -OVER- - - - - ->");
+			gameOver = true;
 			n = -100;
 		}
 	}
