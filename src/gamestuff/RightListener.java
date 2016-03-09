@@ -3,7 +3,7 @@ package gamestuff;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class RightListener implements KeyListener {
+public class RightListener implements KeyListener { //See LeftListener.java
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {

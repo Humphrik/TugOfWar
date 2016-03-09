@@ -1,6 +1,6 @@
 package gamestuff;
 
-public class Countdown extends Thread{
+public class Countdown extends Thread{ //Countdown at the start of the game.
 	public void run(){
 		try{
 			Game.addListener();
@@ -9,14 +9,14 @@ public class Countdown extends Thread{
 			Thread.sleep(1000);
 			Game.label.setText("<- - - - - -1- - - - - ->");
 			Thread.sleep(1000);
-			Game.label.setText("<- - - - - -GO- - - - - ->");
-			Game.started = true;
-		} catch(InterruptedException e){
+			Game.label.setText("<- - - - - -TUG!- - - - - ->");
+			Game.started = true; //Game begins
+		} catch(InterruptedException e){ //Too Early
 			Game.label.setText("<- - - - - -EARLY- - - - - ->");
-			if(Game.leftFalseStarted){
+			if(Game.leftFalseStarted){ //If left false started.
 				Game.leftPrompt.setText("LOSE");
 				Game.rightPrompt.setText("WIN ");
-			}else{
+			}else{ //If right false started.
 				Game.leftPrompt.setText("WIN");
 				Game.rightPrompt.setText("LOSE");
 			}

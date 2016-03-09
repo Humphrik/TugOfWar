@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 public class LeftListener implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		if(findValue(Game.leftKeyList, arg0.getKeyCode()) && !Game.started){
+		if(findValue(Game.leftKeyList, arg0.getKeyCode()) && !Game.started){ //Looks for an early start.
 			Game.leftFalseStarted = true;
 			Game.countdown.interrupt();
 		}
@@ -15,18 +15,12 @@ public class LeftListener implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		// System.out.println("Key Released.");
-		if (findValue(Game.leftKeyList, arg0.getKeyCode()) && Game.started) {
-			// System.out.println("Is argument correct?");
-			if (arg0.getKeyCode() == Game.leftKey) {
-				// System.out.println("Yes.");
+		if (findValue(Game.leftKeyList, arg0.getKeyCode()) && Game.started) { //When a WASD key is pressed.
+			if (arg0.getKeyCode() == Game.leftKey) { //If the pressed key is correct.
 				Game.n -= 5;
 				int temp = Game.leftKey;
-				while (temp == Game.leftKey) {
+				while (temp == Game.leftKey) { //Picks a new key for pressing.
 					int x = (int) (Math.random() * 4);
-					// System.out.println("x = " + x);
-					// System.out.println("leftKey = " + Game.leftKey);
-					// System.out.println("temp = " + temp);
 					if (x == 0) {
 						temp = 65; // A
 						Game.leftPrompt.setText("A");
@@ -41,17 +35,15 @@ public class LeftListener implements KeyListener {
 						Game.leftPrompt.setText("S");
 					}
 				}
-				Game.leftKey = temp;
-				Game.bar.setValue(Game.n);
-				Game.checkWin();
+				Game.leftKey = temp; //New key set.
+				Game.bar.setValue(Game.n); //Values adjusted.
+				Game.checkWin(); //Checks for a win.
 			} else {
-				// System.out.println("No");
 				Game.n += 5;
-				Game.bar.setValue(Game.n);
-				Game.checkWin();
+				Game.bar.setValue(Game.n); //Bar goes in inverse direction.
+				Game.checkWin(); //Tests for a win.
 			}
 		}
-		// System.out.println("Finished");
 	}
 
 	@Override
@@ -60,14 +52,11 @@ public class LeftListener implements KeyListener {
 
 	}
 
-	public static boolean findValue(int[] list, int value) {
-		// System.out.println("Finding values");
+	public static boolean findValue(int[] list, int value) { //Returns whether or not an integer component is part of a list. 
 		for (int i = 0; i <= list.length - 1; i++) {
 			if (list[i] == value) {
-				// System.out.println("Value found");
 				return true;
 			}
-			// System.out.println("Value NOT found");
 		}
 		return false;
 	}

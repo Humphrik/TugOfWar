@@ -35,18 +35,18 @@ public class Game {
 		c.gridy = 0;
 		c.ipadx = 25;
 		leftPrompt.setFont(font);
-		panel.add(leftPrompt, c);
+		panel.add(leftPrompt, c); //Adds display for WASD player.
 		
 		
 		c.gridx = 2;
 		rightPrompt.setFont(font);
-		panel.add(rightPrompt, c);
+		panel.add(rightPrompt, c); //Adds display for arrow key player.
 		
 		
 		c.gridx = 1;
 		c.gridy = 0;
 		label.setFont(font);
-		panel.add(label, c);
+		panel.add(label, c); //Adds the countdown.
 		
 		
 		c.gridx = 0;
@@ -57,16 +57,17 @@ public class Game {
 		panel.add(bar, c);
 		bar.setValue(50);
 		bar.setForeground(Color.BLUE);
-		bar.setBackground(Color.RED);
+		bar.setBackground(Color.RED); //Creates the tug-bar.
 		
 		
 		frame.add(panel);
 		frame.setVisible(true);
 		frame.setSize(750, 300);
 		panel.setFocusable(true);
+		panel.requestFocus();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		frame.setLocationRelativeTo(null);
+		frame.setLocationRelativeTo(null); //Sets conditions of the panel and frame.
 		
 		
 		leftPrompt.setPreferredSize(new Dimension(100,100));
@@ -74,24 +75,24 @@ public class Game {
 		label.setPreferredSize(new Dimension(450,100));
 		leftPrompt.setHorizontalAlignment(SwingConstants.CENTER);
 		rightPrompt.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setHorizontalAlignment(SwingConstants.CENTER); //Makes sure everything is properly sized and aligned.
 		
 		
-		countdown.start();
+		countdown.start(); //Begins the game.
 	}
 
-	public static void addListener() {
+	public static void addListener() { //Adds key inputs to the panel.
 		panel.addKeyListener(new LeftListener());
 		panel.addKeyListener(new RightListener());
 	}
 
-	public static void checkWin() {
-		if (n >= 100) {
+	public static void checkWin() { //Tests for a winning player.
+		if (n >= 100) { //The right player wins.
 			leftPrompt.setText("LOSE");
 			rightPrompt.setText("WIN" );
 			label.setText("<- - - - - -OVER- - - - - ->");
-			n += 200;
-		} else if (n <= 0) {
+			n = 200;
+		} else if (n <= 0) { //The left player wins.
 			rightPrompt.setText("LOSE");
 			leftPrompt.setText("WIN");
 			label.setText("<- - - - - -OVER- - - - - ->");
