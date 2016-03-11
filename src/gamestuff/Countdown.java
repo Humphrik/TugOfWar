@@ -13,7 +13,7 @@ public class Countdown extends Thread{ //Countdown at the start of the game.
 			Game.started = true; //Game begins
 			
 			
-			int timer = 5;
+			int timer = 60;
 			while (timer >= 0 && !Game.gameOver){
 				Thread.sleep(1000);
 				timer--;
