@@ -1,6 +1,7 @@
 package gamestuff;
 
 public class Countdown extends Thread{ //Countdown at the start of the game.
+	static AI ai = new AI();
 	public void run(){
 		try{
 			Game.addListener();
@@ -11,8 +12,9 @@ public class Countdown extends Thread{ //Countdown at the start of the game.
 			Thread.sleep(1000);
 			Game.label.setText("<- - - - - GO! - - - - ->");
 			Game.started = true; //Game begins
-			
-			
+			if(Game.AIEnabled){
+				ai.run();
+			}
 			int timer = 60;
 			while (timer >= 0 && !Game.gameOver){
 				Thread.sleep(1000);

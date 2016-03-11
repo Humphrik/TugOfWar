@@ -3,11 +3,11 @@ package gamestuff;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class RightListener implements KeyListener { //See LeftListener.java
+public class RightListener implements KeyListener { // See LeftListener.java
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		if(findValue(Game.rightKeyList, arg0.getKeyCode()) &&  !Game.started){
+		if (findValue(Game.rightKeyList, arg0.getKeyCode()) && !Game.started) {
 			Game.leftFalseStarted = false;
 			Game.countdown.interrupt();
 		}
@@ -16,10 +16,31 @@ public class RightListener implements KeyListener { //See LeftListener.java
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		// System.out.println("Key Released.");
-		if (findValue(Game.rightKeyList, arg0.getKeyCode()) && Game.started) {
+		testKey(arg0.getKeyCode());
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public static boolean findValue(int[] list, int value) {
+		// System.out.println("Finding values");
+		for (int i = 0; i <= list.length - 1; i++) {
+			if (list[i] == value) {
+				// System.out.println("Value found");
+				return true;
+			}
+			// System.out.println("Value NOT found");
+		}
+		return false;
+	}
+
+	public static void testKey(int key) {
+		if (findValue(Game.rightKeyList, key) && Game.started) {
 			// System.out.println("Is argument correct?");
-			if (arg0.getKeyCode() == Game.rightKey) {
+			if (key == Game.rightKey) {
 				Game.n -= 5;
 				int temp = Game.rightKey;
 				while (temp == Game.rightKey) {
@@ -48,24 +69,5 @@ public class RightListener implements KeyListener { //See LeftListener.java
 				Game.checkWin();
 			}
 		}
-		// System.out.println("Finished");
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public static boolean findValue(int[] list, int value) {
-		// System.out.println("Finding values");
-		for (int i = 0; i <= list.length - 1; i++) {
-			if (list[i] == value) {
-				// System.out.println("Value found");
-				return true;
-			}
-			// System.out.println("Value NOT found");
-		}
-		return false;
 	}
 }

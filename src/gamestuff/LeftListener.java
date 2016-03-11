@@ -15,8 +15,26 @@ public class LeftListener implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		if (findValue(Game.leftKeyList, arg0.getKeyCode()) && Game.started) { //When a WASD key is pressed.
-			if (arg0.getKeyCode() == Game.leftKey) { //If the pressed key is correct.
+		testKey(arg0.getKeyCode());
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public static boolean findValue(int[] list, int value) { //Returns whether or not an integer component is part of a list. 
+		for (int i = 0; i <= list.length - 1; i++) {
+			if (list[i] == value) {
+				return true;
+			}
+		}
+		return false;
+	}
+	public static void testKey(int key){
+		if (findValue(Game.leftKeyList, key) && Game.started) { //When a WASD key is pressed.
+			if (key == Game.leftKey) { //If the pressed key is correct.
 				Game.n += 5;
 				int temp = Game.leftKey;
 				while (temp == Game.leftKey) { //Picks a new key for pressing.
@@ -44,20 +62,6 @@ public class LeftListener implements KeyListener {
 				Game.checkWin(); //Tests for a win.
 			}
 		}
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public static boolean findValue(int[] list, int value) { //Returns whether or not an integer component is part of a list. 
-		for (int i = 0; i <= list.length - 1; i++) {
-			if (list[i] == value) {
-				return true;
-			}
-		}
-		return false;
+		
 	}
 }
