@@ -11,6 +11,8 @@ public class Countdown extends Thread{ //Countdown at the start of the game.
 			Game.label.setText("<- - - - - -1- - - - - ->");
 			Thread.sleep(1000);
 			Game.label.setText("<- - - - - GO! - - - - ->");
+			Game.leftPrompt.setText("W");
+			Game.rightPrompt.setText("UP");
 			Game.started = true; //Game begins
 			if(Game.AIEnabled){
 				ai.start();

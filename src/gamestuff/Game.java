@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,8 +23,8 @@ public class Game {
 	static JPanel panel = new JPanel(new GridBagLayout());
 	static GridBagConstraints c = new GridBagConstraints();
 	static JProgressBar bar = new JProgressBar(JProgressBar.HORIZONTAL, 0, 100);
-	static JLabel leftPrompt = new JLabel("W");
-	static JLabel rightPrompt = new JLabel("UP");
+	static JLabel leftPrompt = new JLabel("P1");
+	static JLabel rightPrompt = new JLabel("P2");
 	static JLabel label = new JLabel("<- - - - - -3- - - - - ->");
 	static Font font = new Font("Playbill", Font.ITALIC, 60);
 	static int n = 50;
@@ -39,8 +40,11 @@ public class Game {
 	static JFrame startFrame = new JFrame("Tug of War");
 	static JPanel startPanel = new JPanel(new GridBagLayout());
 	static GridBagConstraints d = new GridBagConstraints();
-	static JButton onePlayer, twoPlayer;
+	static JButton onePlayer = new JButton("One Player");
+	static JButton twoPlayer = new JButton("Two Player");
 	static JLabel startLabel = new JLabel("Select number of players");
+	static String[] selection = {"Select Difficulty","Easy","Medium","Hard"};
+	static JComboBox<String> difficulty = new JComboBox<String>(selection);
 
 	public static void main(String[] args) {
 		createStartDisplay();
@@ -128,13 +132,31 @@ public class Game {
 		startLabel.setPreferredSize(new Dimension(250, 50));
 		startLabel.setFont(font);
 		startPanel.add(startLabel, d);
+		
+		d.gridx = 0;
+		d.gridy = 2;
+		d.ipadx = 125;
+		d.ipady = 25;
+		d.gridwidth = 1;
+		difficulty.setPreferredSize(new Dimension(125, 25));
+		difficulty.setSelectedItem(selection[0]);
+		difficulty.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(difficulty.getSelectedIndex() == 0){
+					onePlayer.setEnabled(false);
+				} else {
+					onePlayer.setEnabled(true);
+				}
+			}
+			});
+		startPanel.add(difficulty,d);
 
 		d.ipadx = 50;
 		d.ipady = 50;
 		d.insets = new Insets(10, 10, 10, 10);
-		d.gridwidth = 1;
 		createButton(onePlayer, 0, 1, "One Player");
 		createButton(twoPlayer, 1, 1, "Two Players");
+		onePlayer.setEnabled(false);
 		startFrame.add(startPanel);
 		startFrame.setSize(750, 500);
 		startFrame.setVisible(true);
@@ -143,7 +165,6 @@ public class Game {
 	}
 
 	public static void createButton(JButton button, int gridX, int gridY, String text) {
-		button = new JButton(text);
 		d.gridx = gridX;
 		d.gridy = gridY;
 		startPanel.add(button, d);
@@ -151,6 +172,7 @@ public class Game {
 			public void actionPerformed(ActionEvent e) {
 				if (text.equals("One Player")) {
 					AIEnabled = true;
+					rightPrompt.setText("Comp.");
 				} else {
 					AIEnabled = false;
 				}
