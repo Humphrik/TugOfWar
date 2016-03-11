@@ -13,7 +13,7 @@ public class Countdown extends Thread{ //Countdown at the start of the game.
 			Game.label.setText("<- - - - - GO! - - - - ->");
 			Game.started = true; //Game begins
 			if(Game.AIEnabled){
-				ai.run();
+				ai.start();
 			}
 			int timer = 60;
 			while (timer >= 0 && !Game.gameOver){
